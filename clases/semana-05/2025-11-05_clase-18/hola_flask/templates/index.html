@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi pagina web</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body>
+    <h1>Hola Mundo</h1>
+    <p>Canción: {{ cancion }}</p>
+    <p>Repeticiones: {{ repite }}</p>
+    
+    {% for x in range(repite) %}
+        <h3>{{ cancion }}</h3>
+    {% endfor %}
+
+    {# Revisamos si la canción incluye "macarena" #}
+    {% if "macarena" in cancion %}
+        <h4>¡Eh macarena!</h4>
+    {% endif %}
+
+    <script type="text/javascript" 
+        src="{{ url_for('static', filename='js/script.js') }}">
+    </script>
+</body>
+</html>
