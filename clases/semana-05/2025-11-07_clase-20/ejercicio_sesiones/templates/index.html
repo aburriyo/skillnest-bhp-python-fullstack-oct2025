@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Usuario:</h1>
+    <h3>Nombre: {{ session['nombre_usuario'] }}</h3>
+    <h3>Email: {{ session['email_usuario'] }}</h3>
+
+    <h2>Formulario</h2>
+    <form action="/crear_usuario" method="POST">
+        <input type="text" name="nombre">
+        <input type="email" name="email">
+        <input type="hidden" name="rol" value="usuario">
+        <input type="submit" value="Crear Usuario">
+    </form>
+
+    <h2>Mensaje</h2>
+    {{ mensaje|safe }}
+
+
+    
+</body>
+</html>
