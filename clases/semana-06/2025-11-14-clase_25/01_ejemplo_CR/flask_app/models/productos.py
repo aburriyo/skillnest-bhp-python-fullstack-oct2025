@@ -28,3 +28,32 @@ class Producto:
         if resultado:
             return cls(resultado[0])
         return False
+    
+    @classmethod
+    def get_by_id(cls, id: int):
+        data = {"id": id}
+        query = "SELECT * FROM productos WHERE id = %(id)s"
+        resultado = connectToMySQL("tienda").query_db(query, data)
+        if resultado:
+            return cls(resultado[0])
+        return False
+    
+    @classmethod
+    def get_by_name(cls, nombre: str):
+        data = {"nombre": nombre}
+        query = "SELECT * FROM productos WHERE nombre = %(nombre)s"
+        resultado = connectToMySQL("tienda").query_db(query, data)
+        if resultado:
+            return cls(resultado[0])
+        return False
+
+
+    @classmethod
+    def save(cls, datos):
+        query = """
+            INSERT INTO productos
+            (nombre, precio, descripcion, categoria_id)
+            VALUES (%(nombre)s, %(precio)s, %(descripcion)s, %(categoria_id)s)
+        """
+        nuevo_id = connectToMySQL('tienda').query_db(query, datos)
+        return nuevo_id

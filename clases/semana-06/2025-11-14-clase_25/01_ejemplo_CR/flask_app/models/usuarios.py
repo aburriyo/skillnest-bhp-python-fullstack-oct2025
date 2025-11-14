@@ -36,13 +36,6 @@ class Usuario:
             return cls(resultado[0])
         return False
 
-    @classmethod
-    def get_one(cls, data):
-        query = "SELECT * FROM usuarios WHERE id = %(id)s"
-        resultado = connectToMySQL("tienda").query_db(query, data)
-        if resultado:
-            return cls(resultado[0])
-        return False
 
     
 
