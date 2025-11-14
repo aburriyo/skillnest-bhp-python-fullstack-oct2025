@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from flask_app.models.productos import Producto
 
 app = Flask(__name__)
@@ -16,6 +16,22 @@ def ver_producto(id):
     data = {"id": id}
     producto = Producto.get_one(data)
     return render_template("ver_producto.html", producto=producto)
+
+@app.route("/productos/nuevo")
+def nuevo_producto():
+    return render_template("nuevo_producto.html")
+
+
+@app.route("/productos/crear", methods=["POST"])
+def crear_producto():
+    nombre = request.form["nombre"]
+    precio = request.form["precio"]
+    descripcion = request.form["descripcion"]
+    categoria_id = request.form["categoria_id"]
+    print("Estamos recibiendo")
+    
+    return redirect("/productos")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
