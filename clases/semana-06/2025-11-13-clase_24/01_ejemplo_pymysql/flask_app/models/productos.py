@@ -12,7 +12,7 @@ class Producto:
     
     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM producto;"
+        query = "SELECT * FROM productos;"
         resultados = connectToMySQL("tienda").query_db(query)
 
         objetos = []
@@ -20,3 +20,11 @@ class Producto:
             objeto = cls(data)
             objetos.append(objeto)
         return objetos
+
+    @classmethod
+    def get_one(cls, data):
+        query = "SELECT * FROM productos WHERE id = %(id)s"
+        resultado = connectToMySQL("tienda").query_db(query, data)
+        if resultado:
+            return cls(resultado[0])
+        return False
