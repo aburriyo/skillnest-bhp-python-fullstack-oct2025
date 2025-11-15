@@ -28,7 +28,16 @@ def crear_producto():
     precio = request.form["precio"]
     descripcion = request.form["descripcion"]
     categoria_id = request.form["categoria_id"]
+
+    data = {
+        "nombre": nombre,
+        "precio": precio,
+        "descripcion": descripcion,
+        "categoria_id": categoria_id
+    }
+
     print("Estamos recibiendo")
+    id_nuevo_producto = Producto.save(datos=data)
     
     return redirect("/productos")
 
