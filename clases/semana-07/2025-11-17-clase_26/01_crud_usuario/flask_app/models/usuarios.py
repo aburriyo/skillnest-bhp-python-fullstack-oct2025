@@ -6,6 +6,7 @@ class Usuario:
         self.nombre = data["nombre"]
         self.apellido = data["apellido"]
         self.email = data["email"]
+        self.edad = data["edad"]
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
     
@@ -29,7 +30,8 @@ class Usuario:
         return objetos
     
     @classmethod
-    def get_one(cls, data):
+    def get_one(cls, id: int):
+        data = {"id": id}
         query = "SELECT * FROM usuarios WHERE id = %(id)s"
         resultado = connectToMySQL("tienda").query_db(query, data)
         if resultado:
@@ -45,6 +47,18 @@ class Usuario:
         """
         nuevo_id = connectToMySQL('tienda').query_db(query, datos)
         return nuevo_id
+    
+    @classmethod
+    def update(cls, datos):
+        query = """
+            UPDATE usuarios
+            SET nombre = %(nombre)s,
+                apellido = %(apellido)s,
+                email = %(email)s,
+                edad = %(edad)s
+            WHERE id = %(id)s;
+        """
+        return connectToMySQL('tienda').query_db(query, datos)
 
 
     

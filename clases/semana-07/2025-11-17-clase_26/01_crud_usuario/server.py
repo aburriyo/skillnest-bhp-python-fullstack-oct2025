@@ -30,6 +30,13 @@ def crear_usuario():
     
     return redirect("/usuarios")
 
+@app.route("/usuarios/editar/<int:id>")
+def editar_usuario(id):
+    usuario = Usuario.get_one(id)
+    if not usuario:
+        return redirect("/usuarios")
+    return render_template("editar_usuario.html", usuario=usuario)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
