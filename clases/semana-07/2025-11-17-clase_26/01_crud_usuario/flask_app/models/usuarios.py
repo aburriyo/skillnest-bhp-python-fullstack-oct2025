@@ -59,6 +59,15 @@ class Usuario:
             WHERE id = %(id)s;
         """
         return connectToMySQL('tienda').query_db(query, datos)
+    
+    @classmethod
+    def delete(cls, id):
+        query = "DELETE FROM usuarios WHERE id = %(id)s"
+        datos = {
+            "id": id
+        }
+
+        return connectToMySQL("tienda").query_db(query, datos)
 
 
     

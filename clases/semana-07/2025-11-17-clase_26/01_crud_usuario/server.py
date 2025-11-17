@@ -38,5 +38,33 @@ def editar_usuario(id):
     return render_template("editar_usuario.html", usuario=usuario)
 
 
+@app.route("/usuarios/actualizar", methods=["POST"])
+def actualizar_usuario():
+    id = int(request.form["id"])
+    nombre = request.form["nombre"]
+    apellido = request.form["apellido"]
+    email = request.form["email"]
+    edad = int(request.form["edad"])
+
+    data = {
+        "id": id,
+        "nombre": nombre,
+        "apellido": apellido,
+        "email": email,
+        "edad": edad
+    }
+    Usuario.update(data)
+    
+    return redirect("/usuarios")
+
+
+@app.route("/usuarios/eliminar/<int:id>", methods=["POST"])
+def eliminar_usuario(id):
+    usuario = Usuario.get_one(id)
+    if usuario:
+        Usuario.delete(id)
+    return redirect("/usuarios")
+
+
 if __name__ == "__main__":
     app.run(debug=True)

@@ -9,7 +9,10 @@
 
     <h2>Editar un usuario</h2>
 
-    <form action="" method="POST">
+    <form action="/usuarios/actualizar" method="POST">
+
+        <input type="hidden" name="id" value="{{ usuario.id }}">
+
         <label>Nombre:</label>
         <input type="text" name="nombre" value="{{ usuario.nombre }}"><br>
 
