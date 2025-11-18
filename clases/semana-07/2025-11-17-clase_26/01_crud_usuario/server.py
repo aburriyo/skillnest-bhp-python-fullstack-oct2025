@@ -8,6 +8,15 @@ def mostrar_usuarios():
     usuarios = Usuario.get_all()
     return render_template("dashboard_tabla.html", usuarios=usuarios)
 
+
+@app.route("/usuarios/<int:id>")
+def mostrar_usuario(id):
+    usuario = Usuario.get_one(id)
+    if not usuario:
+        return redirect("/usuarios")
+    return render_template("ver_usuario.html", usuario=usuario)
+
+
 @app.route("/usuarios/nuevo")
 def nuevo_usuario():
     return render_template("nuevo_usuario.html")
