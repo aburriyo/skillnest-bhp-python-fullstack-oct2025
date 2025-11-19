@@ -1,4 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask_app.models.taco import Taco
+
 
 class Restaurante:
     def __init__(self, data):
@@ -41,3 +43,31 @@ class Restaurante:
     def delete(cls, datos):
         query = "DELETE FROM restaurantes WHERE id = %(id)s;"
         return connectToMySQL('esquema_tacos').query_db(query, datos)
+
+
+    @classmethod
+    def get_restaurante_y_tacos(cls, datos):
+        query = """
+            SELECT * FROM restaurantes
+            LEFT JOIN tacos ON tacos.restaurante_id = restaurantes.id
+            WHERE restaurantes.id = %(id)s;
+        """
+        resultados = connectToMySQL('esquema_tacos').query_db(query, datos)
+
+        restaurante = Restaurante(resultados[0])
+
+        for fila_en_db in resultados:
+            if fila_en_db["tacos.id"]:
+                datos_taco = {
+                    "id": fila_en_db['tacos.id'],
+                    "tortilla": fila_en_db['tortilla'],
+                    "guiso": fila_en_db['guiso'],
+                    "salsa": fila_en_db['salsa'],
+                    "restaurante_id": fila_en_db['restaurante_id'],
+                    "created_at": fila_en_db['tacos.created_at'],
+                    "updated_at": fila_en_db['tacos.created_at']
+                }
+
+                taco = Taco(datos_taco)
+                restaurante.tacos.append(taco)
+        return restaurante
