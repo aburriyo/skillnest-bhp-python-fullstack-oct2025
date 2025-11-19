@@ -50,5 +50,5 @@ Este repositorio tiene la estructura básica para proyectos Flask.
     ```
     Instalar dependencias con el archivo requirements
     ```
-    pip install -r requirements.ttxt
+    pip install -r requirements.txt
     ```

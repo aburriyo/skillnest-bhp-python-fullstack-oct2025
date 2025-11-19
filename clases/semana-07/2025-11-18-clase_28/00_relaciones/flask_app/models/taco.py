@@ -6,12 +6,13 @@ class Taco:
         self.tortilla = data['tortilla']
         self.guiso = data['guiso']
         self.salsa = data['salsa']
+        self.restaurante_id = data['restaurante_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
     @classmethod
     def save(cls, datos):
-        query = "INSERT INTO tacos (tortilla, guiso, salsa) VALUES(%(tortilla)s, %(guiso)s, %(salsa)s);"
+        query = "INSERT INTO tacos (tortilla, guiso, salsa, restaurante_id) VALUES(%(tortilla)s, %(guiso)s, %(salsa)s, %(restaurante_id)s);"
         return connectToMySQL('esquema_tacos').query_db(query, datos)
     
     @classmethod
@@ -31,7 +32,7 @@ class Taco:
         return cls(taco_en_db[0])
     
     @classmethod
-    def update(cls, datos):
+    def update(cls, datos):  # TODO: agregar campo restaurante_id
         query = "UPDATE tacos SET tortilla=%(tortilla)s, guiso=%(guiso)s, salsa=%(salsa)s WHERE id = %(id)s;"
         return connectToMySQL('esquema_tacos').query_db(query, datos)
     

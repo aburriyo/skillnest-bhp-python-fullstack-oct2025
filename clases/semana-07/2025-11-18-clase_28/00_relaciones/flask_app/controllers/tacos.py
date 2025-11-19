@@ -1,18 +1,21 @@
 from flask import render_template, redirect, request
 from flask_app import app
 from flask_app.models.taco import Taco
+from flask_app.models.restaurante import Restaurante
 
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    restaurantes = Restaurante.get_all()
+    return render_template("index.html", todos_restaurantes=restaurantes)
 
 @app.route('/crear',methods=['POST'])
 def crear():
     datos = {
         "tortilla":request.form['tortilla'],
         "guiso": request.form['guiso'],
-        "salsa": request.form['salsa']
+        "salsa": request.form['salsa'],
+        "restaurante_id": request.form['restaurante_id']
     }
     Taco.save(datos)
     return redirect('/tacos')

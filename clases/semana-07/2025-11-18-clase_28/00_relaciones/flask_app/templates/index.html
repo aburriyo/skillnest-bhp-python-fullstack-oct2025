@@ -24,6 +24,16 @@
             <label for="salsa">Salsa:</label>
             <input type="text" name="salsa" id="salsa" class="form-control">
         </div>
+
+        <div class="form-group">
+            <label for="restaurante_id">Restaurante:</label>
+            <select name="restaurante_id" id="restaurante_id">
+                {% for restaurante in todos_restaurantes %}
+                    <option value="{{ restaurante.id }}">{{ restaurante.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
         <input type="submit" value="Crear taco" class="btn btn-primary btn-outline-dark mt-3">
     </form>
 </body>
