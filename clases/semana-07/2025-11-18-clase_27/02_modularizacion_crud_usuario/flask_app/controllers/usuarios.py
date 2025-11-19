@@ -5,7 +5,7 @@ from flask_app import app
 @app.route("/usuarios")
 def mostrar_usuarios():
     usuarios = Usuario.get_all()
-    return render_template("dashboard_tabla.html", usuarios=usuarios)
+    return render_template("usuarios/dashboard_tabla.html", usuarios=usuarios)
 
 
 @app.route("/usuarios/<int:id>")
@@ -13,12 +13,12 @@ def mostrar_usuario(id):
     usuario = Usuario.get_one(id)
     if not usuario:
         return redirect("/usuarios")
-    return render_template("ver_usuario.html", usuario=usuario)
+    return render_template("usuarios/ver_usuario.html", usuario=usuario)
 
 
 @app.route("/usuarios/nuevo")
 def nuevo_usuario():
-    return render_template("nuevo_usuario.html")
+    return render_template("usuarios/nuevo_usuario.html")
 
 
 @app.route("/usuarios/crear", methods=["POST"])
@@ -43,7 +43,7 @@ def editar_usuario(id):
     usuario = Usuario.get_one(id)
     if not usuario:
         return redirect("/usuarios")
-    return render_template("editar_usuario.html", usuario=usuario)
+    return render_template("usuarios/editar_usuario.html", usuario=usuario)
 
 
 @app.route("/usuarios/actualizar", methods=["POST"])
