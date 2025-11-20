@@ -24,13 +24,13 @@ def nuevo_producto():
 @app.route("/productos/crear", methods=["POST"])
 def crear_producto():
     nombre = request.form["nombre"]
-    apellido = request.form["apellido"]
+    categoria = int(request.form["categoria"])
     precio = int(request.form["precio"])
     descripcion = request.form["descripcion"]
 
     data = {
         "nombre": nombre,
-        "apellido": apellido,
+        "categoria": categoria,
         "descripcion": descripcion,
         "precio": precio
     }
@@ -50,14 +50,14 @@ def editar_producto(id):
 def actualizar_producto():
     id = int(request.form["id"])
     nombre = request.form["nombre"]
-    apellido = request.form["apellido"]
+    categoria_id = int(request.form["categoria_id"])
     descripcion = request.form["descripcion"]
-    precio = int(request.form["precio"])
+    precio = float(request.form["precio"])
 
     data = {
         "id": id,
         "nombre": nombre,
-        "apellido": apellido,
+        "categoria_id": categoria_id,
         "descripcion": descripcion,
         "precio": precio
     }
