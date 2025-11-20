@@ -1,4 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask_app.models import complemento
 
 class Taco:
     def __init__(self, data):
@@ -9,6 +10,8 @@ class Taco:
         self.restaurante_id = data['restaurante_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        
+        self.complementos = []
 
     @classmethod
     def save(cls, datos):
@@ -41,3 +44,9 @@ class Taco:
         query = "DELETE FROM tacos WHERE id = %(id)s;"
         return connectToMySQL('esquema_tacos').query_db(query, datos)
 
+
+    @classmethod
+    def get_taco_y_complementos(cls, datos):
+        
+        # TODO: implementar función (es todo al reves)
+        pass

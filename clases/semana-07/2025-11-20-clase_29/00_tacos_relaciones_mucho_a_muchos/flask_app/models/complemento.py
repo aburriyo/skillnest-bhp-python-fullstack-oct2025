@@ -1,6 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-#from flask_app.models import taco
-from flask_app.models.taco import Taco
+from flask_app.models import taco
 
 
 class Complemento:
@@ -62,8 +61,7 @@ class Complemento:
                     "created_at": fila_en_db["tacos.created_at"],
                     "updated_at": fila_en_db["tacos.updated_at"],
                 }
-                taco = Taco(datos_taco)
-                complemento.en_tacos.append(taco)
+                complemento.en_tacos.append(taco.Taco(datos_taco))
         
         return complemento
     
