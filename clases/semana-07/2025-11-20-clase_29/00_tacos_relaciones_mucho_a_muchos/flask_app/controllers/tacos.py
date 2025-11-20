@@ -30,8 +30,9 @@ def detalle(taco_id):
     datos = {
         'id': taco_id
     }
-    taco = Taco.get_one(datos)
-    return render_template("detalle.html",taco = taco)
+    # taco = Taco.get(datos) antes de la relació muchos a muchos
+    taco = Taco.get_taco_y_complementos(datos)
+    return render_template("detalle.html", taco = taco)
 
 @app.route('/editar/<int:taco_id>')
 def editar(taco_id):

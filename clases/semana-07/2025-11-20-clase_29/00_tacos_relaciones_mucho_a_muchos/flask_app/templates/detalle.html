@@ -17,10 +17,23 @@
                     <h2 class="card-title text-primary">Taco {{ taco['id'] }}</h2>
                     <p class="card-text">Tortilla: {{taco['tortilla']}}</p>
                     <p class="card-text">Guiso: {{taco['guiso']}}</p>
+                    <p class="card-text">Salsa: {{taco['salsa']}}</p>
+                    <p class="card-text">Fecha de Creación: {{ taco['created_at'].strftime("%B %d, %Y  at %H:%M:%S") }}</p>
+
+                    <hr>
+                    <h4>Complementos:</h4>
+                    {% if taco.complementos %}
+                        <ul class="list-group">
+                            {% for complemento in taco.complementos %}
+                                <li class="list-group-item">{{ complemento.nombre_complemento }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="text-muted">Este taco no tiene complementos asignados.</p>
+                    {% endif %}
+
                 </div>
                 <div class="card-footer">
-                    <h3 class="card-subtitle">Salsa: {{taco['salsa']}}</h3>
-                    <p class="card-subtitle">Fecha de Creación: {{ taco['created_at'].strftime("%B %d, %Y  at %H:%M:%S") }}</p>
                     <a href="/editar/{{taco['id']}}" class="btn btn-warning" >Editar</a>
                     <a href="/borrar/{{taco['id']}}" class="btn btn-danger"  >Borrar</a>
                 </div>
