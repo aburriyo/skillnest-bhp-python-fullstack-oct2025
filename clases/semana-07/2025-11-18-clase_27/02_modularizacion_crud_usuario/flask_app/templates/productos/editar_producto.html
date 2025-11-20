@@ -7,25 +7,24 @@
 </head>
 <body>
 
-    <h2>Editar un usuario</h2>
+    <h2>Editar un producto</h2>
 
-    <form action="/usuarios/actualizar" method="POST">
+    <form action="/productos/actualizar" method="POST">
 
-        <input type="hidden" name="id" value="{{ usuario.id }}">
-
+        <input type="hidden" name="id" value="{{ producto.id }}">
         <label>Nombre:</label>
-        <input type="text" name="nombre" value="{{ usuario.nombre }}"><br>
+        <input type="text" name="nombre" value="{{ producto.nombre }}"><br>
 
-        <label>Apellido:</label>
-        <input type="text" name="apellido" value="{{ usuario.apellido }}"><br>
+        <label>Categoria:</label>
+        <input type="text" name="categoria" value="{{ producto.categoria }}"><br>
 
-        <label>Email:</label>
-        <input type="email" name="email" value="{{ usuario.email }}"><br>
+        <label>Descripcion:</label>
+        <input type="text" name="descripcion" value="{{ producto.descripcion }}"><br>
 
-        <label>Edad:</label>
-        <input type="number" name="edad" value="{{ usuario.edad }}"><br>
+        <label>Precio:</label>
+        <input type="number" name="precio" value="{{ producto.precio }}"><br>
 
-        <input type="submit" value="Actualizar usuario">
+        <input type="submit" value="Actualizar producto">
     </form>
     
 </body>
