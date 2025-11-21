@@ -4,7 +4,6 @@ from flask_app.models import taco
 
 class Complemento:
     def __init__(self, data):
-        # {'id': 2, 'nombre_complemento': 'Cebolla', 'created_at': datetime.datetime(2025, 11, 20, 21, 32, 28), 'updated_at': datetime.datetime(2025, 11, 20, 21, 32, 28), 'taco_id': 1, 'complemento_id': 2, 'tacos.id': 1, 'tortilla': 'Maíz', 'guiso': 'Asada', 'salsa': 'Verde', 'tacos.created_at': datetime.datetime(2025, 11, 20, 21, 32, 28), 'tacos.updated_at': datetime.datetime(2025, 11, 20, 21, 32, 28), 'restaurante_id': 1}
         self.id = data["id"]
         self.nombre_complemento = data["nombre_complemento"]
         self.created_at = data["created_at"]

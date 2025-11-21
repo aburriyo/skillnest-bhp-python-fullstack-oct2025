@@ -32,6 +32,12 @@ def detalle(taco_id):
     }
     # taco = Taco.get(datos) antes de la relació muchos a muchos
     taco = Taco.get_taco_y_complementos(datos)
+    print(taco.id)
+    print(taco.tortilla)
+    print(taco.guiso)
+    print(taco.salsa)
+    print(taco.created_at)
+    print(taco.updated_at)
     return render_template("detalle.html", taco = taco)
 
 @app.route('/editar/<int:taco_id>')

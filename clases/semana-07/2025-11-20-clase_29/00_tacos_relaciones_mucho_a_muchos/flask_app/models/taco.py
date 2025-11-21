@@ -49,4 +49,28 @@ class Taco:
     def get_taco_y_complementos(cls, datos):
         
         # TODO: implementar función (es todo al reves)
-        pass
+        query = """
+            SELECT * FROM tacos
+            LEFT JOIN complementos_en_tacos ON complementos_en_tacos.taco_id = tacos.id
+            LEFT JOIN complementos ON complementos_en_tacos.complemento_id = complementos.id 
+            WHERE tacos.id = %(id)s;
+        """
+        resultados = connectToMySQL("esquema_tacos").query_db(query, datos)
+
+        if not resultados or not resultados[0]['id']:
+            return None
+
+        taco = cls(resultados[0])
+
+        for fila_en_db in resultados:
+            if fila_en_db["complementos.id"]:
+                datos_complementos = {
+                    "id": fila_en_db["complementos.id"],
+                    "nombre_complemento": fila_en_db["nombre_complemento"],
+                    "created_at": fila_en_db["complementos.created_at"],
+                    "updated_at": fila_en_db["complementos.updated_at"]
+                }
+
+                complemento_auxiliar = complemento.Complemento(datos_complementos)
+                taco.complementos.append(complemento_auxiliar)
+        return taco
